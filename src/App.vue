@@ -12,6 +12,14 @@
 import "bootstrap/dist/css/bootstrap.min.css"
 export default {
   name: 'App',
+  data(){
+    return{
+
+    }
+  },
+  mounted(){
+    console.log(this)
+  }
 }
 </script>
 
