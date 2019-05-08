@@ -25,8 +25,28 @@ export default {
     Voverall,
   },
   mounted(){
-    this.$store.dispatch("course_aox")
-    console.log(this.$store.state)
+    // this.$store.dispatch("course_aox")
+    this.is_mobile()
+    // this.$store.state.mobile = true
+  },
+  methods:{
+    is_mobile(){
+      if (this._isMobile()) {
+          // alert("手机端");
+          this.$store.state.mobile = true
+          console.log(this.$store)
+        } else {
+          alert("pc端");
+          this.$store.state.mobile = false
+        }
+    },
+    _isMobile() {
+      let flag = navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i)
+      return flag;
+    }
+  },
+  computed:{
+ 
   }
 }
 </script>

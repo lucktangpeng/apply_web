@@ -3,7 +3,6 @@
         <div class="row">
             <vhear></vhear>
             <form class="form-horizontal col-md-12">
-               
                 <div class="form-group">
                     <label for="course_id" class="col-sm-3 control-label">课程选择</label>
                     <div class="col-sm-3">
@@ -112,7 +111,7 @@ export default {
             this.meeting_room_pwd = this.course_msg[this.loginType-1].meeting_room_pwd
         },
         clickmander(){
-            this.$store.dispatch("phone_aox",this.phone)
+            // this.$store.dispatch("phone_aox",this.phone)
         }
     },
     created(){

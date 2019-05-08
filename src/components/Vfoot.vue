@@ -1,15 +1,12 @@
 <template>
-    <div class="form-group ">
-        <div class="col-sm-5" >
+    <div class="form-group" id="foot_hear">
+        <!-- <div class="col-sm-5" >
             
-        </div>
-        <div class="col-sm-3" >
-            <!-- <img src="/static/image/off.png" > -->
-            <button type="button" class="btn btn-primary pull-right col-sm-12">取消</button>
-        </div>
-        <div class="col-sm-3">
-            <!-- <img src="/static/image/susses.png" > -->
-            <button type="button" class="btn btn-primary pull-right col-sm-12">确定</button>
+        </div> -->
+        <div class="col-sm-11" >
+            <button type="button" class="btn btn-primary pull-right col-sm-3">确定</button>
+            <button type="button" class="btn btn-primary pull-right col-sm-3">取消</button>
+            
         </div>
     </div>
 </template>
@@ -31,5 +28,11 @@ export default {
     img{
         float: right;
         width: 100%;
+    }
+    #foot_hear{
+        margin-top: 5%
+    }
+    button{
+        margin-left: 5%
     }
 </style>

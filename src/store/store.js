@@ -6,6 +6,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
     state: {
         courese_msg:"",
+        mobile: ""
     },
     mutations: {
       COURSE_AOX (state,date) {
