@@ -1,16 +1,16 @@
-import Vue from 'vue'
-import Router from 'vue-router'
-// import HelloWorld from '@/components/HelloWorld'
-import Vcontent from '@/components/Vcontent'
+// import Vue from 'vue'
+// import Router from 'vue-router'
+// // import HelloWorld from '@/components/HelloWorld'
+// import Vcontent from '@/components/Vcontent'
 
-Vue.use(Router)
+// Vue.use(Router)
 
-export default new Router({
-  routes: [
-    {
-      path: '/',
-      name: 'Vcontent',
-      component: Vcontent
-    }
-  ]
-})
+// export default new Router({
+//   routes: [
+//     {
+//       path: '/',
+//       name: 'Vcontent',
+//       component: Vcontent
+//     }
+//   ]
+// })

@@ -1,5 +1,7 @@
 <template>
-    <h1>完善会议资料</h1>
+    <div class="col-md-12">
+        <img src="/static/image/backgroup_hear.png" >
+    </div>
 </template>
 <script>
 export default {
@@ -12,8 +14,11 @@ export default {
 }
 </script>
 <style scoped>
-    h1{
-        text-align: center
+    img{
+        width: 100%
+    }
+    div{
+        padding: 0;
     }
 </style>
 
