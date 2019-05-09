@@ -37,8 +37,7 @@ export default {
 
                     }
                     },1000)
-            // this.$refs.code.innerHTML= "已发送"
-            // this.$store.dispatch("phone_aox",this.ph)
+            this.$store.dispatch("phone_aox",this.ph)
         },
         change_back(){
             if (this.dis){

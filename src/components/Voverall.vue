@@ -12,24 +12,34 @@ export default {
             marginobj:{
                 marginTop: ""
             },
-            val:this.mobl
+            mobli:""
         }
     },
     mounted(){
-        console.log(this.$store.state.mobile)
+        this.is_mobile()
         this.chang_margin()
     },
     methods:{
+        _isMobile() {
+            let flag = navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i)
+            return flag;
+        },
+        is_mobile(){
+            if (this._isMobile()) {
+                //手机端
+                this.mobli = true
+                } else {
+                //PC端
+                this.mobli = false
+                }
+            },
+            
         chang_margin(){
-            console.log(111132323323)
-            console.log(this.mobl)
-            if(this.mobl){
+            if(this.mobli){
                 this.marginobj.marginTop=""
-                console.log(333333333333333333333)
             }
             else{
                 this.marginobj.marginTop="5%"
-                 console.log(66666666666666666666666)
             }
         }
     },
@@ -37,11 +47,6 @@ export default {
         Vcontent,
     },
     computed:{
-        mobl(){
-            console.log(111111111111)
-            console.log(this.$store.state)
-            return this.$store.state.mobile
-        }
     }
 }
 </script>
