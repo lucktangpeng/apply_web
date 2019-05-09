@@ -45,4 +45,5 @@ export default {
     height: 100%;
     background-image: url("../static/image/backgroup.png")
   }
+  
 </style>
