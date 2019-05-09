@@ -6,7 +6,10 @@ Vue.use(Vuex)
 export default new Vuex.Store({
     state: {
         courese_msg:"",
-        mobile: ""
+        mobile: "",
+        error:"",
+        code_error:"",
+        phone_statu:"",
     },
     mutations: {
       COURSE_AOX (state,date) {
@@ -14,8 +17,13 @@ export default new Vuex.Store({
         
       },
       PHONE_AOX (state,date) {
-         
+         state.error = date.data
+         console.log(state.error)
         
+      },
+      CODE_AOX (state,date) {
+          state.code_error = date.data
+          console.log(state.code_error)
       }
     },
     actions:{
@@ -47,7 +55,25 @@ export default new Vuex.Store({
         }).then(function(date){
           // 请求发送成功
           console.log(date)
-          // context.commit('COURSE_AOX',date)
+          context.commit('PHONE_AOX',date)
+        }).catch(function(){
+          // 请求发送失败
+          console.log("请求失败")
+        })
+        
+      },
+      code_aox (context,date) {
+        Vue.prototype.$axios.request({
+          url:"http://192.168.10.195:8000/api/phone/",
+          method:"PUT",
+          data:date,
+          headers:{
+            'Content-Type':'application/json',
+          }
+        }).then(function(date){
+          // 请求发送成功
+          console.log(date.data)
+          context.commit('CODE_AOX',date)
         }).catch(function(){
           // 请求发送失败
           console.log("请求失败")

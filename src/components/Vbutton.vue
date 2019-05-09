@@ -22,9 +22,11 @@ export default {
     },
     methods:{
         clickmander(){
-            var time = 60;
-            var that = this
-            var timer = setInterval(function () {
+            this.$store.dispatch("phone_aox",this.ph)
+            if(this.error_content.status){
+                var time = 60;
+                var that = this
+                var timer = setInterval(function () {
                         that.dis=true;
                         that.$refs.code.innerHTML= "已发送("+time+")";
                         that.change_back()
@@ -37,7 +39,9 @@ export default {
 
                     }
                     },1000)
-            this.$store.dispatch("phone_aox",this.ph)
+            }
+           
+            
         },
         change_back(){
             if (this.dis){
@@ -48,7 +52,12 @@ export default {
                   this.styleobj.backgroundColor=""
                   this.styleobj.borderColor=""
             }
-        }
+        },
+    },
+    computed:{
+        error_content(){
+            return this.$store.state.error
+        },
     }
 }
 </script>

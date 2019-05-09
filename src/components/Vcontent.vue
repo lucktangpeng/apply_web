@@ -60,11 +60,21 @@
                 <div class="form-group">
                     <label for="phone" class="col-sm-3 control-label">手机号</label>
                     <div class="col-sm-5">
-                        <input type="text" class="form-control" id="phone" v-model="phone" >
+                        <input type="text" class="form-control" id="phone" v-model="phone" placeholder="手机号" >
+                        <!-- <verrormsg></verrormsg> -->
                     </div>
                     <vbutton :ph="phone"></vbutton>
                 </div>
-                <vfoot></vfoot>
+                
+                <div class="form-group">
+                    <label for="phone" class="col-sm-3 control-label">验证码</label>
+                    <div class="col-sm-5 ">
+                        <input type="text" class="form-control " id="code" v-model="code" placeholder="验证码"  >
+                        <verrormsg></verrormsg>
+                    </div>
+                    <!-- <vbutton :ph="phone"></vbutton> -->
+                </div>
+                <vfoot :sendcode=code :ph_code="phone"></vfoot>
             </form>
         </div>
     </div>
@@ -74,6 +84,7 @@
 import Vhear from "../components/Vhear.vue"
 import Vbutton from "../components/Vbutton.vue"
 import Vfoot from "../components/Vfoot.vue"
+import Verrormsg from "../components/Verrormsg.vue"
 export default {
     name:"Vcontent",
     data(){
@@ -81,13 +92,15 @@ export default {
             time:"",
             meeting_room:"",
             meeting_room_pwd:"",
-            phone:""
+            phone:"",
+            code:""
         }
     },
     components:{
         Vhear,
         Vbutton,
         Vfoot,
+        Verrormsg,
     },
     methods:{
         change_cou(){
