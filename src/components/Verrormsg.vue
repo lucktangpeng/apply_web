@@ -1,5 +1,5 @@
 <template>
-    <div class="alert alert-warning col-md-12 " role="alert" v-if="error_status"  >
+    <div class="alert alert-warning col-md-12 " role="alert" v-if="error_status|code_status"  >
         {{msg}}
         
     </div>
@@ -23,9 +23,12 @@ export default {
                     return false
                 }
             };
-            if(this.code_content){
+        },
+        code_status(){
+             if(this.code_content){
                 if (!this.code_content.status){
                     this.msg = this.code_content.error
+                    console.log("验证错误返回")
                     console.log(this.msg)
                     return true
                 }

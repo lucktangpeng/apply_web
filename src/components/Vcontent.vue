@@ -23,22 +23,22 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="agent_id" class="col-sm-3 control-label">代理商代号</label>
+                    <label for="agent_id" class="col-sm-3 control-label" >代理商代号</label>
                     <div class="col-sm-8">
-                        <input type="text" class="form-control" id="agent_id" placeholder="请填入代理商代号或者员工代号">
+                        <input type="text" class="form-control" id="agent_id" v-model="agent_id" placeholder="请填入代理商代号或者员工代号">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="company" class="col-sm-3 control-label">培训人名称</label>
                     <div class="col-sm-8">
-                        <input type="text" class="form-control" id="company" placeholder="公司名或员工名">
+                        <input type="text" class="form-control" id="company" v-model="company" placeholder="公司名或员工名">
                     </div>
                 </div>
                
                 <div class="form-group">
                     <label for="area" class="col-sm-3 control-label">区域</label>
                     <div class="col-sm-8">
-                        <input type="text" class="form-control" id="area" placeholder="所在城市">
+                        <input type="text" class="form-control" id="area" v-model="area" placeholder="所在城市">
                     </div>
                 </div>
                 <div class="form-group">
@@ -74,7 +74,7 @@
                     </div>
                     <!-- <vbutton :ph="phone"></vbutton> -->
                 </div>
-                <vfoot :sendcode=code :ph_code="phone"></vfoot>
+                <vfoot :sendcode=code :ph_code="phone" :agent_id="agent_id" :company="company" :area="area" :course_id="couponSelected" ></vfoot>
             </form>
         </div>
     </div>
@@ -93,7 +93,16 @@ export default {
             meeting_room:"",
             meeting_room_pwd:"",
             phone:"",
-            code:""
+            code:"",
+            agent_id:"",
+            company:"",
+            area:"",
+            // per_values:{
+            //     "phone": phone,
+            //     "agent_id":agent_id,
+            //     "company":company,
+            //     "area":area
+            // }
         }
     },
     components:{
@@ -101,6 +110,9 @@ export default {
         Vbutton,
         Vfoot,
         Verrormsg,
+    },
+    computed:{
+       
     },
     methods:{
         change_cou(){

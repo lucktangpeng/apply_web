@@ -16,12 +16,23 @@ export default {
     },
     props:{
         sendcode: String,
-        ph_code: String
+        ph_code: String,
+        company: String,
+        agent_id: String,
+        area:String,
+        course_id:Number|String
     },
     methods:{
         click_code(){
             console.log(this.sendcode)
+            console.log("所有的数据")
+            console.log(this.course_id)
+            console.log(this.ph_code)
+            console.log(this.company)
+            console.log(this.area)
+            console.log(this.agent_id)
             this.$store.dispatch("code_aox",{"phone":this.ph_code,"code":this.sendcode})
+
         }
     }
 }

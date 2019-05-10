@@ -23,7 +23,7 @@ export default {
     methods:{
         clickmander(){
             this.$store.dispatch("phone_aox",this.ph)
-            if(this.error_content.status){
+            
                 var time = 60;
                 var that = this
                 var timer = setInterval(function () {
@@ -39,7 +39,7 @@ export default {
 
                     }
                     },1000)
-            }
+            
            
             
         },
