@@ -8,7 +8,7 @@
                     <div class="col-sm-3">
                         <select  class="form-control" v-model="couponSelected"  id="course_id" @change="change_cou()" >
                             <option value="0">请选择</option>
-                            <option v-for="itme in course_msg" :value="itme.id" >
+                            <option v-for="(itme,index) in course_msg" :value="index+1" >
                                 {{itme.course_name}}
                             </option>
                         </select>
@@ -17,7 +17,7 @@
                         
                         <select class="form-control" v-model="timeSelected" id="course_time" @change="change_time()" >
                             <option value="0">请选择</option>
-                            <option :value="tim.id" v-for="tim in course_msg">{{tim.time}}</option>
+                            <option :value="ins+1" v-for="(tim,ins) in course_msg">{{tim.time}}</option>
                         </select>
                       
                     </div>
@@ -74,7 +74,7 @@
                     </div>
                     <!-- <vbutton :ph="phone"></vbutton> -->
                 </div>
-                <vfoot :sendcode=code :ph_code="phone" :agent_id="agent_id" :company="company" :area="area" :course_id="couponSelected" ></vfoot>
+                <vfoot :sendcode=code :ph_code="phone" :agent_id="agent_id" :company="company" :area="area" :course="couponSelected" ></vfoot>
             </form>
         </div>
     </div>
@@ -119,6 +119,7 @@ export default {
             //根据课程id来变更时间的id
             this.course_num = course_id.options[course_id.selectedIndex].value;
             this.timeSelected = this.course_num
+            console.log(this.course_num)
             this.time_and_cou(this.course_num)
         },
         change_time(){
@@ -134,8 +135,8 @@ export default {
                 this.meeting_room_pwd=""
             }
             else{
-                this.meeting_room = this.course_msg[this.course_num-1].meeting_room;
-                this.meeting_room_pwd = this.course_msg[this.course_num-1].meeting_room_pwd
+                this.meeting_room = this.course_msg[course_num-1].meeting_room;
+                this.meeting_room_pwd = this.course_msg[course_num-1].meeting_room_pwd
             }
         },
 

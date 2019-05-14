@@ -20,19 +20,35 @@ export default {
         company: String,
         agent_id: String,
         area:String,
-        course_id:Number|String
+        course:Number|String
     },
     methods:{
         click_code(){
-            console.log(this.sendcode)
-            console.log("所有的数据")
-            console.log(this.course_id)
-            console.log(this.ph_code)
-            console.log(this.company)
-            console.log(this.area)
-            console.log(this.agent_id)
             this.$store.dispatch("code_aox",{"phone":this.ph_code,"code":this.sendcode})
+            this.$axios.request({
+                url:"http://127.0.0.1:8000/api/record/",
+                data:this.commit_val,
+                method:"POST",
+                headers:{
+                    'Content-Type':'application/json',
+                }
+                }).then(function(date){
+                    // 请求发送成功
+                    console.log(date)
+                }).catch(function(){
+                // 请求发送失败
+                console.log("请求失败")
+                })
 
+        }
+    },
+    computed:{
+        commit_val(){
+            return{"course":this.course,
+                    "company":this.company,
+                    "area":this.area,
+                    "agent_id":this.agent_id,
+                    "phone":this.ph_code,}
         }
     }
 }

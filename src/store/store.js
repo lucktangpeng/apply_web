@@ -29,7 +29,7 @@ export default new Vuex.Store({
     actions:{
       course_aox (context) {
         Vue.prototype.$axios.request({
-          url:"http://192.168.10.195:8000/api/course/",
+          url:"http://127.0.0.1:8000/api/course/",
           method:"GET",
           headers:{
             'Content-Type':'application/json',
@@ -46,7 +46,7 @@ export default new Vuex.Store({
       },
       phone_aox (context,date) {
         Vue.prototype.$axios.request({
-          url:"http://192.168.10.195:8000/api/phone/",
+          url:"http://127.0.0.1:8000/api/phone/",
           method:"POST",
           data:{"phone":date},
           headers:{
@@ -64,7 +64,7 @@ export default new Vuex.Store({
       },
       code_aox (context,date) {
         Vue.prototype.$axios.request({
-          url:"http://192.168.10.195:8000/api/phone/",
+          url:"http://127.0.0.1:8000/api/phone/",
           method:"PUT",
           data:date,
           headers:{
