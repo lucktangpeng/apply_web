@@ -53,13 +53,13 @@ export default {
                 // that.code_status = date.data.status
                 if(date.data.status){
                     that.$axios.request({
-                        url:"http://127.0.0.1:8000/api/record/",
+                        url:"http://192.168.10.151:8000/api/record/",
                         method:"POST",
                         data:{"phone":that.ph_code,
                                 "company":that.company,
                                 "agent_id":that.agent_id,
                                 "area":that.area,
-                                "course_id":that.course_id,},
+                                "course_id":that.course,},
                         headers:{
                         'Content-Type':'application/json',
                         }

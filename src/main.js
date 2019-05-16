@@ -5,8 +5,9 @@ import App from './App'
 // import router from './router'
 import store from './store/store'
 import axios from "axios"
+import global from "./common/common"
 Vue.prototype.$axios = axios
-
+Vue.prototype.com = global
 Vue.config.productionTip = false
 
 
