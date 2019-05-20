@@ -18,7 +18,7 @@
                         
                         <select class="form-control" v-model="timeSelected" id="course_time" @change="change_time()" >
                             <option value="0">请选择</option>
-                            <option :value="tim.id" v-for="(tim,ins) in course_msg">{{tim.time+" "+tim.small_time}}</option>
+                            <option :value="tim.id" v-for="(tim,ins) in course_msg">{{tim.start_time}}</option>
                         </select>
                       
                     </div>
@@ -87,11 +87,10 @@
 </template>
 
 <script>
-import Vhear from "../components/Vhear.vue"
-import Vbutton from "../components/Vbutton.vue"
-import Vfoot from "../components/Vfoot.vue"
-import Verrormsg from "../components/Verrormsg.vue"
-// import $ from "jquery"
+import Vhear from "../pc/Vhear"
+import Vbutton from "../pc/Vbutton"
+import Vfoot from "../pc/Vfoot"
+import Verrormsg from "../pc/Verrormsg"
 export default {
     name:"Vcontent",
     data(){
@@ -106,12 +105,6 @@ export default {
             area:"",
             id_cou:"",
             already_num:"",
-            // per_values:{
-            //     "phone": phone,
-            //     "agent_id":agent_id,
-            //     "company":company,
-            //     "area":area
-            // }
         }
     },
     components:{
@@ -130,7 +123,6 @@ export default {
         change_cou(){
             //根据课程id来变更时间的id
             this.course_num = course_id.options[course_id.selectedIndex].value;
-            // console.log(this.course_num)
             this.timeSelected = this.course_num
             this.id_cou = this.course_num
             this.time_and_cou(this.course_num)
@@ -151,7 +143,7 @@ export default {
             else{
                 var that = this
                 this.$axios.request({
-                    url:"http://192.168.10.151:8000/api/sum/"+course_num,
+                    url:this.com.sum_url+course_num,
                     method:"GET",
                     headers:{
                         'Content-Type':'application/json',
@@ -165,28 +157,17 @@ export default {
                     console.log("请求失败")
                     })
                 for(var i in this.course_msg){
-                    // console.log(typeof(i))
-                    //  console.log(typeof(this.course_msg[1].id))
-                    //  console.log(typeof(course_num))
                     if(parseInt(this.course_msg[i].id) == course_num){
-                        // console.log("1111111")
-                        // console.log(this.course_msg[i].id)
-                        // console.log("和")
-                        // console.log(course_num)
                         this.meeting_room = this.course_msg[i].meeting_room;
                         this.meeting_room_pwd = this.course_msg[i].meeting_room_pwd
                     }
                     
 
                 }
-                // console.log(this.course_msg[0].id)
+               
                 
             }
         },
-
-        clickmander(){
-            // this.$store.dispatch("phone_aox",this.phone)
-        }
     },
     created(){
 　　　　　　　　　　　//课程和时间select默认选择零
@@ -197,13 +178,6 @@ export default {
         course_msg(){
             return this.$store.state.courese_msg.data
         },
-        // cou_id(){
-        //     // var opti = $("#course_id option:selected").val()
-        //     // return opti
-        //     var sel = document.getElementById("course_id")
-        //     var selected_val = sel.options[sel.selectedIndex].value;
-        //     return selected_val
-        // }
     }
 }
 </script>

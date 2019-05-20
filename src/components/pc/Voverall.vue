@@ -4,7 +4,7 @@
     </div>
 </template>
 <script>
-import Vcontent from "../components/Vcontent.vue"
+import Vcontent from "./Vcontent"
 export default {
     name:"Voverall",
     data(){
@@ -52,11 +52,6 @@ export default {
 </script>
 <style scoped>
     .frame{
-        /* margin-top: 5%; */
-        /* margin: 0 auto; */
-  
-        /* width: 41%;
-        height: 63%; */
         background-color: white;
         padding: 0
     

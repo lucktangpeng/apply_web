@@ -11,6 +11,13 @@ export default new Vuex.Store({
         code_error:"",
         phone_statu:"",
         recprd_status:"",
+        put_vlue:{
+          course_id:"",
+          agent_id:"",
+          company:"",
+          area:"",
+          phone:""
+        }
     },
     mutations: {
       COURSE_AOX (state,date) {
@@ -19,7 +26,6 @@ export default new Vuex.Store({
       },
       PHONE_AOX (state,date) {
          state.error = date.data
-         console.log(state.error)
         
       },
   
@@ -60,43 +66,5 @@ export default new Vuex.Store({
         })
         
       },
-      
-    // record_values(context,date){
-    //   Vue.prototype.$axios.request({
-    //     url:"http://127.0.0.1:8000/api/record/",
-    //     method:"POST",
-    //     data:date,
-    //     headers:{
-    //       'Content-Type':'application/json',
-    //     }
-    //   }).then(function(date){
-    //     // 请求发送成功
-    //     console.log(date.data)
-    //     context.commit('RECORD_VALUES',date)
-    //   }).catch(function(){
-    //     // 请求发送失败
-    //     console.log("数据提交请求失败")
-    //   })
-    // },
-    // record_values(context,date){
-    //   Vue.prototype.$axios.request({
-    //         url:"http://127.0.0.1:8000/api/record/",
-    //         method:"POST",
-    //         data:date,
-    //         headers:{
-    //           'Content-Type':'application/json',
-    //         }
-    //       }).then(function(date){
-    //         // 请求发送成功
-    //        console.log("发送全部数据的请求")
-    //        console.log(date)
-    //        context.commit("RECORD_VALUES",date)
-            
-    //       }).catch(function(){
-    //         // 请求发送失败
-    //         console.log("数据提交请求失败111")
-    //       })
-
-    // },
     }
   })
