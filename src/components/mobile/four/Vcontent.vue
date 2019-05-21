@@ -6,15 +6,15 @@
                 
                 <div class="col-md-10">
                     <span>代理商代号</span>
-                    <input type="text" class="form-control " v-model="agent_id" id="input_st1" placeholder="请输入代理商代号或员工代号">
+                    <input type="text" class="form-control " @blur="com.toblus()" v-model="agent_id" id="input_st1" placeholder="请输入代理商代号或员工代号">
                 </div>
                 <div class="col-md-10" >
                     <span>单位\人名称</span>
-                    <input type="text" class="form-control "  v-model="company" id="input_st2" placeholder="公司名或员工名">
+                    <input type="text" class="form-control " @blur="com.toblus()" v-model="company" id="input_st2" placeholder="公司名或员工名">
                 </div>
                 <div class="col-md-10" >
                     <span>区&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;域</span>
-                    <input type="text" class="form-control input_st"  v-model="area" placeholder="所在城市">
+                    <input type="text" class="form-control input_st"  @blur="com.toblus()" v-model="area" placeholder="所在城市">
                 </div>
             </div>
         </div>

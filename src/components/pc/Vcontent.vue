@@ -5,7 +5,7 @@
             <form class="form-horizontal col-md-12">
                 <div class="form-group">
                     <label for="course_id" class="col-sm-3 control-label">课程选择</label>
-                    <div class="col-sm-3">
+                    <div class="col-sm-3 padin_right">
                         <select  class="form-control" v-model="couponSelected"  id="course_id" @change="change_cou()" >
                             <option value="0">请选择</option>
                             <option v-for="(itme,index) in course_msg" :value="itme.id"  >
@@ -14,7 +14,7 @@
                             </option>
                         </select>
                     </div>
-                    <div class="col-sm-5">
+                    <div class="col-sm-5 padin_left">
                         
                         <select class="form-control" v-model="timeSelected" id="course_time" @change="change_time()" >
                             <option value="0">请选择</option>
@@ -65,21 +65,26 @@
                 </div>
                 <div class="form-group">
                     <label for="phone" class="col-sm-3 control-label">手机号</label>
-                    <div class="col-sm-5">
+                    <div class="col-sm-3 padin_right">
                         <input type="text" class="form-control" id="phone" v-model="phone" placeholder="手机号" >
                         <!-- <verrormsg></verrormsg> -->
                     </div>
+                    <div class="col-sm-2 padin">
+                        <input type="text" class="form-control " id="code" v-model="code" placeholder="验证码"  >
+                        
+                    </div>
                     <vbutton :ph="phone"></vbutton>
                 </div>
-                
-                <div class="form-group">
-                    <label for="phone" class="col-sm-3 control-label">验证码</label>
-                    <div class="col-sm-5 ">
-                        <input type="text" class="form-control " id="code" v-model="code" placeholder="验证码"  >
-                        <verrormsg></verrormsg>
+                    <div class="col-sm-8 col-sm-offset-3 padin botton_msg">
+                       <verrormsg></verrormsg>
+                        <!-- <verrormsg></verrormsg> -->
                     </div>
-                    <!-- <vbutton :ph="phone"></vbutton> -->
-                </div>
+                
+                <!-- <div class="form-group">
+                    <label for="phone" class="col-sm-3 control-label">验证码</label>
+                    
+                    <vbutton :ph="phone"></vbutton>
+                </div> -->
                 <vfoot :sendcode=code :ph_code="phone" :agent_id="agent_id" :company="company" :area="area" :course="id_cou" ></vfoot>
             </form>
         </div>
@@ -193,7 +198,21 @@ export default {
     .btn-primary {
         /* 覆盖bootstrap按钮原有的颜色 */
         color: #fff;
-        background-color:#1384D3;
-        border-color: #1384D3;
+        background-color:#FF7105;
+        border-color: #FF7105;
     }
+    .padin{
+        padding-right: 5px;
+        padding-left: 5px;
+    }
+     .padin_left{
+        padding-left: 5px;
+    }
+        .padin_right{
+        padding-right: 5px;
+    }
+    .botton_msg{
+        margin-bottom: 3%
+    }
+   
 </style>

@@ -7,6 +7,7 @@ import ElementUI from 'element-ui'
 import store from './store/store'
 import axios from "axios"
 import global from "./common/common"
+import jQuery from "jquery"
 Vue.prototype.$axios = axios
 Vue.prototype.com = global
 Vue.config.productionTip = false

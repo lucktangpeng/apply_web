@@ -6,14 +6,14 @@
                 
                 <div class="col-md-10">
                     <span>课程</span>
-                    <select type="email" class="form-control"  id="course_input" v-model="course_name" @change="chang_cour_name()">
+                    <select type="email" class="form-control"  id="course_input" v-model="course_name" @blur="com.toblus()" @change="chang_cour_name()">
                         <option value="0">请选择课程</option>
                         <option v-for="itme in course_msg">{{itme.course_name}}</option>
                     </select>
                 </div>
                 <div class="col-md-10" >
                     <span>时间</span>
-                    <select type="email" class="form-control" id="course_input"  v-model="course_ti">
+                    <select type="email" class="form-control" id="course_input" @blur="com.toblus()"  v-model="course_ti">
                         <option value="0">请选择课程时间</option>
                         <option v-for="itm in course_time">{{itm.start_date}}</option>
                     </select>
@@ -38,43 +38,40 @@ export default {
             this.course_ti = 0
         },
         click_put(){
-            // this.course_name
-            // this.course_ti
             if(this.course_name&&this.course_ti !=0){
                  for (var i=0;i<this.course_msg.length;i++){
                 if(this.course_msg[i].course_name == this.course_name&&this.course_msg[i].start_time == this.course_ti){
                    this.$store.state.put_vlue.course_id = this.course_msg[i].id
-                    
                 }
-                
                 }
             }
-            console.log(this.$store.state.put_vlue.course_id)
             this.$router.push({name:"Vmobile_four"})
         },
+        
     },
     computed:{
         course_msg(){
             return this.$store.state.courese_msg.data
         },
         course_time(){
+        var that = this
         var time_list = []
-        // console.log(JSON.parse(JSON.stringify(this.content_val)))
-        // var cou = JSON.parse(JSON.stringify(this.course_msg))
-        // console.log(this.course_msg)
-        // let tr = JSON.stringify(this.course_msg)
-        // console.log(JSON.parse(tr))
-        for (var i=0;i<this.course_msg.length;i++){
-          if(this.course_msg[i].course_name == this.course_name){
+        if(!this.course_msg){
+            return time_list
+        }
+        else{
+          for (var i=0;i<this.course_msg.length;i++){
+            if(this.course_msg[i].course_name == this.course_name){
             time_list.push({
               "start_date":this.course_msg[i].start_time,
             })
           }
+         }
+        //  console.log(that.course_ti)
         }
         return time_list
         },
-        
-    }
+    },
 }
 </script>
 <style scoped>

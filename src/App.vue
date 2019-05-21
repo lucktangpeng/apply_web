@@ -8,9 +8,11 @@
 
 <script>
 
+// import "jquery/dist/jquery"
+
+import "bootstrap/dist/js/bootstrap.js"
 import "bootstrap/dist/css/bootstrap.min.css"
-// import "bootstrap/dist/js/bootstrap.min.js"
-import $ from "jquery"
+
 export default {
   name: 'App',
   data(){
@@ -31,13 +33,14 @@ export default {
 </script>
 
 <style scoped >
-  /* #app{
+  #app{
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url("../static/image/backgroup.png")
+    background: url("../static/image/backgroup.png") no-repeat;
+    background-size: cover
   }
-   */
+  
 </style>

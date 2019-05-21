@@ -1,9 +1,12 @@
 <template>
     <div class="form-group" id="foot_hear">
-        <div class="col-sm-11" >
-            <button type="button" class="btn btn-primary pull-right col-sm-3" @click="click_code()">确定</button>
-            <button type="button" class="btn btn-primary pull-right col-sm-3">取消</button>
-        </div>
+        
+       
+             <button type="button" class="btn btn-primary btn-warning  button_right " @click="click_code()" >确定报名</button>
+                 
+    
+            <!-- <button type="button" class="btn btn-primary btn-warning pull-right col-sm-3">取消</button> -->
+        
     </div>
 </template>
 <script>
@@ -90,5 +93,10 @@ export default {
     }
     button{
         margin-left: 5%
+    }
+    .button_right{
+        margin-left: 27% ;
+        width: 62%;
+        margin-bottom: 5%
     }
 </style>

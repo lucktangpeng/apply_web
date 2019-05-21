@@ -1,18 +1,16 @@
 <template>
     <div class="col-md-10" >
-        <div class="modal fade" id="create_modal" tabindex="-1" role="dialog">
+        <div class="modal modal_top_" id="create_modal" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Modal title</h4>
             </div>
-            <div class="modal-body">
-                <p>One fine body&hellip;</p>
+            <div class="modal-body text-center">
+                <h3>{{modal_title}}</h3>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+            <div class="modal-footer " >
+                <button type="button" class="btn btn-default pull-lefter" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary" @click="put_all()">确认</button>
             </div>
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
@@ -29,8 +27,8 @@
             </div>
            
         </div>
-        <button type="button" class="btn btn-warning " id="foot_button">取消</button>
-        <button type="button" class="btn btn-warning pull-right" id="foot_button2" @click="put_all()">确定</button>
+        <button type="button" class="btn btn-warning " id="foot_button" @click="stip_one()">取消</button>
+        <button type="button" class="btn btn-warning pull-right" id="foot_button2" @click="notarize()">确定</button>
     </div>
 </template>
 <script>
@@ -40,13 +38,17 @@ export default {
     name:"Vcontent",
     data(){
         return{
-
+            modal_title:"",
+            modal_status:""
         }
         
     },
     methods:{
         put_all(){
-            this.$axios.request({
+            var that = this
+            if(this.modal_status){
+                
+                this.$axios.request({
                         url:this.com.record_url,
                         method:"POST",
                         data:this.$store.state.put_vlue,
@@ -57,7 +59,8 @@ export default {
                         // 请求发送成功
                         console.log("所有信息发送成功")
                         console.log(date)
-                        // $("#create_modal").modal('show')
+                        $('#create_modal').modal('hide')
+                       
                         // clearInterval(that.timer)
                         // that.$store.state.put_vlue.phone = that.phone_number
                         // that.$store.state.code_error = ""
@@ -66,6 +69,25 @@ export default {
                         // 请求发送失败
                         console.log("数据提交请求失败111")
                     })
+            }
+            else{
+                $('#create_modal').modal('hide')
+                that.$router.push({name:"Vmobile"})
+            }
+            
+        },
+        notarize(){
+            this.modal_status = true
+            this.modal_title = "确认报名信息无误!"
+            $("#create_modal").modal('show')
+           
+        //    
+        },
+        stip_one(){
+            this.modal_status = false
+            this.modal_title = "确认取消当前信息!"
+            $("#create_modal").modal('show')
+            
         }
     },
     computed:{
@@ -77,18 +99,21 @@ export default {
         },
         com_course(){
             console.log(this.course_val)
-            for (var i=0;i<this.course_val.length;i++){
-                console.log(this.course_val[i].id)
-                console.log(this.all_val.course_id)
-            if(this.course_val[i].id == this.all_val.course_id){
+            if(!this.course_val){
+                return {course_name:"",start_time:""}
+            }
+            else{
+                 for (var i=0;i<this.course_val.length;i++){
+                if(this.course_val[i].id == this.all_val.course_id){
                 // this.$store.state.put_vlue.course_id = this.course_msg[i].id
                 console.log("1111111111111111")
+                console.log(this.course_val[i])
                 return this.course_val[i]
                 
             }
-
-            
             }
+            }
+           
            
         }
     }
@@ -135,4 +160,21 @@ export default {
      background:linear-gradient(0deg,rgba(251,120,24,1),rgba(253,154,26,1));
     border-radius:4px;
  }
+ .modal_top_{
+     margin-top: 50%
+ }
+ .modal-header {
+    padding: 15px;
+    border-bottom: 0px solid #e5e5e5;
+}
+.modal-footer {
+    padding: 15px;
+    text-align: right;
+    border-top: 0px solid #e5e5e5;
+}
+.btn-primary {
+    color: #fff;
+    background-color: rgba(251,120,24,1);
+    border-color: rgba(253,154,26,1);
+}
 </style>

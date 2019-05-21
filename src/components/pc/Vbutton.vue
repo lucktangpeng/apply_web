@@ -1,7 +1,9 @@
 <template>
-    <div class="col-sm-3" @click="clickmander">
+    <div class="col-sm-3 padin_left" @click="clickmander">
         <!-- <img src="/static/image/code.png" > -->
-        <button type="button" class="btn btn-primary pull-right col-sm-12"  v-bind:disabled="dis" ref="code" :style="styleobj" >获取验证码</button>
+        <button type="button" class="btn btn-primary pull-right col-sm-12 btn-warning "  v-bind:disabled="dis" ref="code" :style="styleobj"  >获取验证码</button>
+
+       
     </div>
 </template>
 <script>
@@ -65,5 +67,8 @@ export default {
     img{
         width: 100%;
     }
+     /* .padin_left{
+        padding-left: 5px;
+    } */
 </style>
 

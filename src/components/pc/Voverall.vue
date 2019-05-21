@@ -1,5 +1,5 @@
 <template>
-    <div class="frame col-md-6 col-md-offset-3" :style="marginobj">
+    <div class="frame col-md-4 col-md-offset-6 top_number" :style="marginobj">
         <vcontent></vcontent>
     </div>
 </template>
@@ -55,6 +55,9 @@ export default {
         background-color: white;
         padding: 0
     
+    }
+    .top_number{
+        margin-top: 10%
     }
 </style>
 
