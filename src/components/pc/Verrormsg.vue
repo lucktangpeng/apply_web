@@ -23,13 +23,15 @@ export default {
                     return false
                 }
             };
+            // that.$store.state.code_error
         },
         code_status(){
              if(this.code_content){
                 if (!this.code_content.status){
-                    this.msg = this.code_content.error
-                    console.log("验证错误返回")
-                    console.log(this.msg)
+                    for(var it in this.code_content.error){
+                        console.log(this.code_content.error[it][0])
+                        this.msg = this.code_content.error[it][0]
+                    }
                     return true
                 }
                 else{

@@ -24,23 +24,42 @@ export default {
     },
     methods:{
         clickmander(){
-            this.$store.dispatch("phone_aox",this.ph)
-            
-                var time = 60;
-                var that = this
-                var timer = setInterval(function () {
-                        that.dis=true;
-                        that.$refs.code.innerHTML= "已发送("+time+")";
-                        that.change_back()
-                        time -= 1;
-                    if (time <= 0 ){
-                        that.dis=false;
-                        that.$refs.code.innerHTML= "获取验证码"
-                        that.change_back()
-                        clearInterval(timer)
+            // this.$store.dispatch("phone_aox",this.ph)
+            var that = this
+            this.$axios.request({
+                url:this.com.phone_post_url,
+                method:"POST",
+                data:{"phone":this.ph},
+                headers:{
+                    'Content-Type':'application/json',
+                }
+                }).then(function(date){
+                // 请求发送成功
+                console.log(date)
+                if(date.data.status){
+                    var time = 60;
+                    var timer = setInterval(function () {
+                            that.dis=true;
+                            that.$refs.code.innerHTML= "已发送("+time+")";
+                            that.change_back()
+                            time -= 1;
+                        if (time <= 0 ){
+                            that.dis=false;
+                            that.$refs.code.innerHTML= "获取验证码"
+                            that.change_back()
+                            clearInterval(timer)
 
+                        }
+                        },1000)
                     }
-                    },1000)
+                    else{
+                        that.$store.state.code_error = date.data
+                    }
+                }).catch(function(){
+                // 请求发送失败
+                console.log("请求失败")
+            })
+               
             
            
             

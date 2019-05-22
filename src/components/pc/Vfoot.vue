@@ -28,42 +28,52 @@ export default {
     },
     methods:{
         click_code(){
-            var that = this
-            this.$axios.request({
-            url:this.com.phone_post_url,
-            method:"PUT",
-            data:{"phone":this.ph_code,"code":this.sendcode},
-            headers:{
-                'Content-Type':'application/json',
+            if(!this.course){
+                this.$store.state.code_error = {"status":false,"error":{"course":["请输入报名课程和对应的时间"]}}
             }
-            }).then(function(date){
-            // 请求发送成功
-                that.$store.state.code_error = date.data
-                if(date.data.status){
-                    that.$axios.request({
-                        url:that.com.record_url,
-                        method:"POST",
-                        data:{"phone":that.ph_code,
-                                "company":that.company,
-                                "agent_id":that.agent_id,
-                                "area":that.area,
-                                "course_id":that.course,},
-                        headers:{
-                        'Content-Type':'application/json',
-                        }
-                    }).then(function(date){
-                        // 请求发送成功
-                        that.$store.state.code_error = ""
-                    }).catch(function(){
-                        // 请求发送失败
-                        console.log("数据提交请求失败111")
-                    })
+            else{
+                 var that = this
+                this.$axios.request({
+                url:this.com.phone_post_url,
+                method:"PUT",
+                data:{"phone":this.ph_code,"code":this.sendcode},
+                headers:{
+                    'Content-Type':'application/json',
                 }
-                
-            }).catch(function(){
-            // 请求发送失败
-            console.log("请求失败11")
-            })
+                }).then(function(date){
+                // 请求发送成功
+                    that.$store.state.code_error = date.data
+                    
+                    if(date.data.status){
+                        that.$axios.request({
+                            url:that.com.record_url,
+                            method:"POST",
+                            data:{"phone":that.ph_code,
+                                    "company":that.company,
+                                    "agent_id":that.agent_id,
+                                    "area":that.area,
+                                    "course_id":that.course,},
+                            headers:{
+                            'Content-Type':'application/json',
+                            }
+                        }).then(function(date){
+                            // 请求发送成功
+                            
+                            if(date.data.status){
+                                that.$store.state.code_error = ""
+                                that.$store.state.success_modal_msg = "报名成功!"
+                                $("#success_modal").modal("show")
+                            }
+                        }).catch(function(){
+                            // 请求发送失败
+                            console.log("数据提交请求失败111")
+                        })
+                    }
+                }).catch(function(){
+                // 请求发送失败
+                console.log("请求失败11")
+                })
+            }
 
         }
     },

@@ -8,8 +8,8 @@
 
 <script>
 
-// import "jquery/dist/jquery"
-
+// import "jQuery" from ""
+// import jQuery from "jquery"
 import "bootstrap/dist/js/bootstrap.js"
 import "bootstrap/dist/css/bootstrap.min.css"
 
@@ -17,14 +17,36 @@ export default {
   name: 'App',
   data(){
     return{
-
+      mobli:'',
     }
   },
   mounted(){
     this.$store.dispatch("course_aox")
+    this.is_mobile()
+    this.chang_margin()
   },
   methods:{
-    
+     _isMobile() {
+            let flag = navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i)
+            return flag;
+        },
+    is_mobile(){
+            if (this._isMobile()) {
+                //手机端
+                this.mobli = true
+                } else {
+                //PC端
+                this.mobli = false
+                }
+            },
+    chang_margin(){
+            if(this.mobli){
+                this.$router.push({name:"Vmobile"})
+            }
+            else{
+                this.$router.push({name:"Voverall"})
+            }
+        }
   },
   computed:{
  

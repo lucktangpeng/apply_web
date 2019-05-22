@@ -18,7 +18,7 @@
                         
                         <select class="form-control" v-model="timeSelected" id="course_time" @change="change_time()" >
                             <option value="0">请选择</option>
-                            <option :value="tim.id" v-for="(tim,ins) in course_msg">{{tim.start_time}}</option>
+                            <option v-for="(tim,ins) in cou_time_list">{{tim}}</option>
                         </select>
                       
                     </div>
@@ -46,7 +46,7 @@
                     <label for="meeting_room" class="col-sm-3 control-label">会议室号</label>
                     <div class="col-sm-6">
                         <fieldset disabled>
-                        <input type="text" class="form-control" id="meeting_room" v-model="meeting_room" >
+                        <input type="text" class="form-control" id="meeting_room" v-model="meet_room[0]" >
                         </fieldset>
                     </div>
                     <div class="col-sm-2">
@@ -59,14 +59,14 @@
                     <label for="meeting_room_pwd" class="col-sm-3 control-label">会议室密码</label>
                     <div class="col-sm-8">
                         <fieldset disabled>
-                        <input type="text" class="form-control" id="meeting_room_pwd" v-model="meeting_room_pwd" >
+                        <input type="text" class="form-control" id="meeting_room_pwd" v-model="meet_room[1]" >
                         </fieldset>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="phone" class="col-sm-3 control-label">手机号</label>
                     <div class="col-sm-3 padin_right">
-                        <input type="text" class="form-control" id="phone" v-model="phone" placeholder="手机号" >
+                        <input type="text" class="form-control" id="phone" v-model="phone" @change="err_change()" placeholder="手机号" >
                         <!-- <verrormsg></verrormsg> -->
                     </div>
                     <div class="col-sm-2 padin">
@@ -85,7 +85,7 @@
                     
                     <vbutton :ph="phone"></vbutton>
                 </div> -->
-                <vfoot :sendcode=code :ph_code="phone" :agent_id="agent_id" :company="company" :area="area" :course="id_cou" ></vfoot>
+                <vfoot :sendcode=code :ph_code="phone" :agent_id="agent_id" :company="company" :area="area" :course="couponSelected" ></vfoot>
             </form>
         </div>
     </div>
@@ -110,6 +110,11 @@ export default {
             area:"",
             id_cou:"",
             already_num:"",
+            course_id_val:"",
+            couponSelected:"",
+            timeSelected:"",
+            meeting_room:"",
+            meeting_room_pwd:""
         }
     },
     components:{
@@ -125,19 +130,17 @@ export default {
        
     },
     methods:{
+        err_change(){
+            this.$store.state.code_error = ""
+        },
         change_cou(){
-            //根据课程id来变更时间的id
-            this.course_num = course_id.options[course_id.selectedIndex].value;
-            this.timeSelected = this.course_num
-            this.id_cou = this.course_num
-            this.time_and_cou(this.course_num)
+            this.meeting_room = ""
+            this.meeting_room_pwd = ""
+            this.timeSelected=0
+            this.$store.state.code_error=""
         },
         change_time(){
-            //根据时间id来变更课程的id
-            this.course_num = course_time.options[course_time.selectedIndex].value;
-            this.couponSelected = this.course_num
-            this.id_cou = this.course_num
-            this.time_and_cou(this.course_num)
+        
         },
         time_and_cou(course_num){
             //时间和课程通用代码
@@ -183,7 +186,33 @@ export default {
         course_msg(){
             return this.$store.state.courese_msg.data
         },
+        cou_time_list(){
+             for (var number in this.course_msg){
+                if(this.course_msg[number].id == this.couponSelected){
+                    
+                    this.course_id_val = this.course_msg[number].course_name
+                }
+            }
+            var course_time_list=[]
+            for (var val in this.course_msg){
+                if(this.course_msg[val].course_name == this.course_id_val){
+                    course_time_list.push(this.course_msg[val].start_time)
+                }
+            }
+            return course_time_list
+        },
+        meet_room(){
+            //根据课程的名称和时间进行搜索，对应的会议室号和密码
+            for (var vals in this.course_msg){
+                if(this.course_msg[vals].course_name == this.course_id_val&&this.course_msg[vals].start_time == this.timeSelected){
+                    this.meeting_room = this.course_msg[vals].meeting_room
+                     this.meeting_room_pwd = this.course_msg[vals].meeting_room_pwd
+                }
+            }
+            return [this.meeting_room,this.meeting_room_pwd]
+        }
     }
+
 }
 </script>
 

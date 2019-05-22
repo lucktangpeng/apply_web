@@ -17,7 +17,8 @@ export default new Vuex.Store({
           company:"",
           area:"",
           phone:""
-        }
+        },
+        success_modal_msg:""
     },
     mutations: {
       COURSE_AOX (state,date) {
